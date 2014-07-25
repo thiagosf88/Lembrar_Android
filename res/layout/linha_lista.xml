@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent" android:layout_height="fill_parent" android:gravity="center_vertical">
+    <TextView android:gravity="center_vertical|center" android:textColor="@color/preto" android:height="60dp" android:text="TextView" android:id="@+id/nome_lista" android:typeface="normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="17dip"></TextView>
+</LinearLayout>

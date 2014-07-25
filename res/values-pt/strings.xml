@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lembrar</string>
+    <string name="semTarefas">Não há tarefas nessa lista</string>
+    
+    <color name="fundo_branco">#fff</color>
+    <color name="preto">#000</color>
+    <string name="menu_delete">Apagar Tarefa</string>
+    <string name="menu_adiar">Adiar Tarefa</string>
+    <string name="menu_completa">Completar Tarefa</string>
+    <string name="texto_inicial">     Essa é uma aplicação, em fase beta, 
+    não oficial de acesso ao Remember The Milk.\nO RTM não permite (e concordamos
+     com isso,então nunca solicitaremos seus dados) que apps de terceiros tenham
+      acesso aos dados de login e senha dos usuários do serviço, portanto você será
+       direcionado a uma página oficial do serviço onde poderá fornecer permissão 
+       de acesso a essa app.\nPara ser redirecionado clique no botão a abaixo.\n\nEssa
+        app está em fase de desenvolvimento podendo ter bugs e falhas de segurança, 
+        sendo que seus desenvolvedores não poderão ser responsabilizados por quaisquer
+         dessas situações. Ao clicar no botão abaixo você concorda com esses termos 
+         acima citados.</string>
+    <string name="texto_inicial2">Após conceder a permissão de acesso
+     através do site do Remember the Milk, clique no botão para iniciar o Lembrar</string>
+    <string name="tarefa_criar">Nova tarefa</string>
+    <string name="tarefa_editar">Alterando tarefa</string>
+    <string-array name="repeticao_termos">
+        <item>após</item>
+        <item>semanalmente</item>
+        <item>diariamente</item>
+        <item>anualmente</item>
+        <item>dia</item>
+        <item>dias</item>
+        <item>segunda-feira</item>
+        <item>terça-feira</item>
+        <item>quarta-feira</item>
+        <item>quinta-feira</item>
+        <item>sexta-feira</item>
+        <item>segundas-feiras</item>
+        <item>terças-feiras</item>
+        <item>quartas-feiras</item>
+        <item>quintas-feiras</item>
+        <item>sextas-feiras</item>
+        <item>sábado</item>
+        <item>sábados</item>
+        <item>domingo</item>
+        <item>domingos</item>
+        <item>aos</item>
+        <item>às</item>
+        <item>toda</item>
+        <item>cada</item>
+        <item>depois</item>
+        <item>até</item>
+        <item>ano</item>
+        <item>anos</item>
+        <item>de</item>
+    </string-array>
+    <string name="t_dica">Ex.: Semanalmente ou após 2 dias</string>
+        <string name="t_tarefa">Tarefa</string>
+    <string name="t_lista">Lista</string>
+    <string name="t_tags">Tags</string>
+    <string name="t_limite">Data prevista</string>
+    <string name="t_hora">Hora prevista</string>
+    <string name="t_repeticao">Repetição</string>
+    <string name="t_prioridade">Prioridade</string>
+    <string name="t_notas">Notas</string>
+    <string name="t_nota">Nota</string>
+    <string name="b_salvar">Salvar</string>
+    <string name="b_completar">Completar</string>
+    <string name="b_adiar">Adiar</string>
+    <string name="b_nova">Nova</string>
+    <string name="b_iniciar">Iniciar lembrar para RTM</string>
+    <string name="b_ir_home_rtm">Ir para página de autorização do RTM</string>
+    <string name="b_sim">sim</string>
+    <string name="b_nao">não</string>
+    <string name="m_atualizar">Atualizar</string>
+    <string name="m_tarefas_por">Tarefas por</string>
+    <string name="m_dia">dia</string>
+    <string name="m_tag">tag</string>
+    <string name="msg_armazenando">Armazenando dados...</string>
+    <string name="msg_buscando">Buscando dados do RTM...</string>
+    <string name="msg_sincronizando">Sincronizando...</string>
+    <string name="msg_atualizando_tarefa">Atualizando tarefa...</string>
+    <string name="msg_sem_rede">Sem internet</string>
+    <string name="msg_sem_dados">Todos os dados foram apagados!</string>
+    <string name="msg_adicionando_tarefa">Adicionando tarefa...</string>
+    
+    <string name="msg_atencao">Atenção</string>
+    <string name="msg_autorizacao">Você ainda não autorizou essa app a acessar sua conta.</string>
+    <string name="msg_sem_rede2" >Sem internet! Todas as alterações só terão efeito após uma conexão com a internet!</string>  
+	<string name="str_hoje">Hoje</string>
+	<string name="str_vencidas">Vencidas</string>
+	<string name="str_entrada">Entrada</string>
+	<string name="str_enviadas">Enviadas</string>
+	<string name="msg_conectando">Conectando...</string>
+	<string name="msg_carregando">Carregando tarefas...</string>
+	<string name="msg_verificando">Verificando conexão...</string>
+	<string name="msg_apagando">Apagando tarefa...</string>
+	<string name="msg_apagando2">Tarefa apagada com sucesso!</string>
+	<string name="msg_apagando3">Sem internet. Exclusão agendada!</string>
+	<string name="msg_adiando">Adiando tarefa...</string>
+	<string name="msg_adiando2">Tarefa adiada com sucesso!</string>
+	<string name="msg_adiando3">Sem internet. Adiamento agendado!</string>
+	<string name="msg_adicionando">Adicionando tarefa...</string>
+	<string name="msg_adicionando2">Tarefa adicionada com sucesso!</string>
+	<string name="msg_adicionando3">Sem internet. Adição agendada!</string>
+	<string name="msg_atualizando">Atualizando tarefa...</string>
+	<string name="msg_atualizando2">Tarefa atualizada com sucesso!</string>
+	<string name="msg_atualizando3">Sem internet. Atualização agendada!</string>
+	<string name="msg_completando">Completando tarefa...</string>
+	<string name="msg_completando2">Tarefa completada com sucesso!</string>
+	<string name="msg_completando3">Sem internet. Completar agendado!</string>
+	<string name="t_seleciona_tag">Selecione uma tag</string>
+	<string name="str_tarefas_tag">Tarefas da tag: </string>
+	<string name="str_tarefas_em">Tarefas em: </string>
+	<string name="str_sem_titulo">sem título</string>
+	<string name="str_as">as</string>
+	<string name="msg_n_atualizou">Não foi possível atualizar. Tente mais tarde!</string>
+	<string name="msg_s_descricao">A tarefa deve ter uma descrição</string>
+	<string name="msg_confirmar_exclusao_total">Você tem certeza?</string>
+	<string name="t_sem_data">Sem data</string>
+	<string name="t_sem_hora">Sem hora</string>
+	<string name="op_atualizar_inicio_on">Sincronização ao iniciar - ativada</string>
+	<string name="op_atualizar_inicio_off">Sincronização ao iniciar - desativada</string>
+	<string name="op_capa_1">Barra azul, ícone laranja</string>
+	<string name="op_capa_2">Barra azul, ícone colorido</string>
+	<string name="op_capa_3">Barra laranja, ícone colorido</string>
+	<string name="op_capa_4">Barra laranja, ícone azul</string>
+	<string name="op_escolher_aparencia">Escolha a capa</string>
+	<string name="op_sair_lembrar">Apagar todos os dados do Lembrar</string>
+
+	
+</resources>

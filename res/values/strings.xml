@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lembrar</string>
+    <string name="semTarefas">You have no incomplete tasks in this list</string>
+    
+    <color name="fundo_branco">#fff</color>
+    <color name="preto">#000</color>
+    <string name="menu_delete">Delete task</string>
+    <string name="menu_adiar">Postpone</string>
+    <string name="menu_completa">Complete task</string>
+    <string name="texto_inicial">This is a beta application and unofficial
+     access to Remember The Milk (RTM).\nThe RTM does not allow (and 
+    I agree with this, then never ask for your data) to third-party apps 
+     have access to the login and password of users service, so you will
+      be directed to an official site of the service where you give permission 
+      to access this app. \n To be redirected click the button below.
+       \n \nThis app is under development and may have bugs and security holes,
+        and its developers are not liable for any of these situations. 
+        By clicking the button below you agree to these terms above</string>
+    <string name="texto_inicial2">After granting access permission
+      through the site Remember the Milk, click the button to start the Lembrar</string>
+    <string name="tarefa_criar">New task</string>
+    <string name="tarefa_editar">Updating task</string>
+    <string-array name="repeticao_termos">
+        <item>after</item>
+        <item>weekly</item>
+        <item>dialy</item>
+        <item>yearly</item>
+        <item>day</item>
+        <item>days</item>
+        <item>monday</item>
+        <item>tuesday</item>
+        <item>wednesday</item>
+        <item>thursday</item>
+        <item>friday</item>
+        <item>mondays</item>
+        <item>tuesdays</item>
+        <item>wednesdays</item>
+        <item>thursdays</item>
+        <item>fridays</item>
+        <item>saturday</item>
+        <item>saturdays</item>
+        <item>sunday</item>
+        <item>sundays</item>        
+        <item>all</item>
+        <item>each</item>
+        <item>until</item>
+        <item>year</item>
+        <item>years</item>
+        
+    </string-array>
+    <string name="t_dica"> weekly or after 2 days</string>
+    <string name="t_tarefa">Task</string>
+    <string name="t_lista">List</string>
+    <string name="t_tags">Tags</string>
+    <string name="t_limite">Due</string>
+    <string name="t_hora">Due time</string>
+    <string name="t_repeticao">Repeat</string>
+    <string name="t_prioridade">Priority</string>
+    <string name="t_notas">Notes</string>
+    <string name="t_nota">Note</string>
+    <string name="b_salvar">Save</string>
+    <string name="b_completar">Complete</string>
+    <string name="b_adiar">Postpone</string>
+    <string name="b_nova">New</string>
+    <string name="b_iniciar">Start Lembrar</string>
+    <string name="b_ir_home_rtm">Go to authorization site of the RTM</string>
+    <string name="b_sim">yes</string>
+    <string name="b_nao">no</string>
+    <string name="m_atualizar">Refresh</string>
+    <string name="m_tarefas_por">Tasks by</string>
+    <string name="m_dia">day</string>
+    <string name="m_tag">tag</string>
+    <string name="msg_armazenando">Storing data...</string>
+    <string name="msg_buscando">Fetching data from RTM...</string>
+    <string name="msg_sincronizando">Synchronizing...</string>
+    <string name="msg_atualizando_tarefa">Updating task...</string>
+    <string name="msg_sem_rede">No internet!</string>
+    <string name="msg_sem_dados">All data has been deleted!</string>
+    <string name="msg_adicionando_tarefa">Adding task...</string>
+    <string name="msg_atencao">Attention</string>
+    <string name="msg_autorizacao">You are not authorized to access this app to your account!</string>
+    <string name="msg_sem_rede2" >No Internet! All changes will take effect only after an internet connection!</string>  
+	<string name="str_hoje">Today</string>
+	<string name="str_vencidas">Overdue</string>
+	<string name="str_entrada">Inbox</string>
+	<string name="str_enviadas">Sent</string>
+	<string name="msg_conectando">Connecting...</string>
+	<string name="msg_carregando">Loading tasks...</string>
+	<string name="msg_verificando">Checking connection...</string>
+	<string name="msg_apagando">Deleting tasks...</string>
+	<string name="msg_apagando2">Task successfully deleted!</string>
+	<string name="msg_apagando3">No Internet. Deletion has been scheduled!</string>
+	<string name="msg_adiando">Postponing task...</string>
+	<string name="msg_adiando2">Task successfully postponed!</string>
+	<string name="msg_adiando3">No Internet. Postponement schedule!</string>
+	<string name="msg_adicionando">Adding task...</string>
+	<string name="msg_adicionando2">Task successfully added!</string>
+	<string name="msg_adicionando3">No Internet. Adding has been scheduled!</string>
+	<string name="msg_atualizando">Updating task...</string>
+	<string name="msg_atualizando2">Task successfully updated!</string>
+	<string name="msg_atualizando3">No Internet. Update has been scheduled!</string>
+	<string name="msg_completando">Completing task...</string>
+	<string name="msg_completando2">Task successfully completed!</string>
+	<string name="msg_completando3">No Internet. Completion has been scheduled!</string>
+	<string name="t_seleciona_tag">Choose a tag</string>
+	<string name="str_tarefas_tag">Tasks of tag:</string>
+	<string name="str_tarefas_em">Tasks on: </string>
+	<string name="str_sem_titulo">no title</string>
+	<string name="str_as">at</string>
+	<string name="msg_n_atualizou">Couldn\'t update. Try later!</string>
+	<string name="msg_s_descricao">Task must have a description!</string>
+	<string name="msg_confirmar_exclusao_total">Are you sure?</string>
+	<string name="t_sem_data">No due</string>
+	<string name="t_sem_hora">No time</string>
+	<color name="laranja">#FFA54F</color>
+	<color name="vermelho">#FF0000</color>
+	<color name="azulclaro">#1E90FF</color>
+	<string name="m_cnf">Config</string>
+	<string name="op_atualizar_inicio_on">When starting synchronization - enabled</string>
+	<string name="op_atualizar_inicio_off">When starting synchronization - disabled</string>
+	<string name="op_capa_1">Blue bar, orange icon</string>
+	<string name="op_capa_2">Blue bar, colored icon</string>
+	<string name="op_capa_3">Orange bar, colored icon</string>
+	<string name="op_capa_4">Orange bar, blue icon</string>
+	<string name="op_escolher_aparencia">Choose skin</string>
+	<string name="op_sair_lembrar">Delete all data from Lembrar</string>
+	
+	
+
+</resources>

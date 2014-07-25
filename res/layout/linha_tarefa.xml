@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/fundo_branco" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_height="wrap_content" android:id="@+id/relativeLayout1" android:layout_width="fill_parent">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@color/fundo_branco" android:textColor="@color/preto" android:minHeight="50dp" android:id="@+id/texto" android:text="TextView" android:textSize="15dp" android:layout_toRightOf="@+id/img_prio" android:layout_alignParentTop="true" android:paddingLeft="10dp"></TextView>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/texto" android:layout_alignRight="@+id/texto" android:id="@+id/tags_linha"></TextView>
+        <TextView android:layout_height="wrap_content" android:id="@+id/data_linha" android:layout_below="@+id/texto" android:layout_width="wrap_content" android:layout_alignLeft="@+id/texto" android:paddingLeft="3dp"></TextView>
+        <ImageView android:id="@+id/img_prio" android:layout_alignParentTop="true" android:layout_width="8dp" android:layout_alignBottom="@+id/data_linha" android:layout_height="fill_parent"></ImageView>
+    </RelativeLayout>
+
+</LinearLayout>  

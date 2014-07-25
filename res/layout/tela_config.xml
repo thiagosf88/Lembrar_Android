@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:orientation="vertical" android:background="@color/fundo_branco">
+    <TextView android:layout_height="50dip" android:id="@+id/textView3" android:layout_width="fill_parent" android:textSize="20dip" android:textColor="@color/fundo_branco" android:text="Configurações" android:textStyle="bold" android:gravity="center" android:background="@drawable/ac"></TextView>
+    <ScrollView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/scrollView1">
+        <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:layout_height="fill_parent" android:orientation="vertical" android:padding="10dip">
+            <ToggleButton android:layout_height="70dip" android:text="ToggleButton" android:textSize="20dip" android:layout_width="fill_parent" android:background="@drawable/l" android:gravity="center_vertical|left" android:textStyle="normal" android:textColor="@color/fundo_branco" android:paddingLeft="20dip" android:id="@+id/tb_sincroniza_inicio" android:textOff="@string/op_atualizar_inicio_off" android:textOn="@string/op_atualizar_inicio_on"></ToggleButton>
+            <TextView android:layout_height="70dip" android:textSize="20dip" android:textColor="@color/fundo_branco" android:layout_width="fill_parent" android:text="@string/op_escolher_aparencia" android:paddingLeft="20dip" android:background="@drawable/l" android:gravity="center_vertical" android:textStyle="normal" android:clickable="true" android:id="@+id/tv_escolha_capa"></TextView>
+            <TextView android:layout_height="70dip" android:textSize="20dip" android:textColor="@color/fundo_branco" android:layout_width="fill_parent" android:paddingLeft="20dip" android:background="@drawable/l" android:gravity="center_vertical" android:textStyle="normal" android:id="@+id/tv_sair_lembrar" android:text="@string/op_sair_lembrar"></TextView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

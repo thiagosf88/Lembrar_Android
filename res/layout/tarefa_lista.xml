@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="vertical" android:background="@color/fundo_branco" android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:paddingTop="10dp" android:paddingBottom="7dp" android:paddingLeft="10sp" android:layout_width="fill_parent" android:background="@color/azulclaro" android:padding="5dip">
+        <ImageView android:layout_width="wrap_content" android:id="@+id/imageView1" android:layout_height="wrap_content" android:src="@drawable/icon_b_l_barra"></ImageView>
+        <Button android:id="@+id/bt_nova_tarefa" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/b_nova" android:paddingLeft="10dp" android:paddingRight="10dp" android:typeface="normal" android:textSize="20dp" android:textColor="@color/preto" android:background="@color/azulclaro"></Button>
+        <Spinner android:id="@+id/sp_listas_todas" android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="fill_parent" android:layout_gravity="left" android:background="@color/azulclaro"></Spinner>
+    </LinearLayout>
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/texto_msg"></TextView>
+    
+    <ListView android:id="@+id/android:list"
+          android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"/>
+  	<TextView android:id="@+id/android:empty"
+          android:text="@string/semTarefas" android:layout_height="fill_parent" android:gravity="center|center_vertical" android:textSize="25dp" android:layout_width="fill_parent"/>
+
+	
+</LinearLayout>

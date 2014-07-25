@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <group android:id="@+id/itens_menu">
+    <item android:id="@+id/atualizar"
+          android:icon="@drawable/ic_menu_refresh" android:title="@string/m_atualizar"/>
+    <item android:id="@+id/tarefas_por" android:icon="@drawable/ic_menu_mark" android:title="@string/m_tarefas_por">
+        <menu>
+            <item android:id="@+id/item_tag" android:icon="@drawable/ic_menu_tag" android:title="@string/m_tag"></item>
+            <item android:id="@+id/item_dia" android:icon="@drawable/ic_menu_today" android:title="@string/m_dia"></item>
+        </menu>
+    </item>
+    <item android:id="@+id/cnf" android:title="@string/m_cnf" android:icon="@drawable/ic_menu_preferences"></item>
+    </group>
+    
+    
+</menu>

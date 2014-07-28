@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import br.thg.lmb.R;
+import br.thg.rlmb.R;
 import br.thg.lmb.dominio.Lista;
 
 public class ListaAdapter extends BaseAdapter {
@@ -34,7 +34,7 @@ public class ListaAdapter extends BaseAdapter {
 
 	@Override
 	/**
-	 * retorna o id mesmo não a posicõ
+	 * retorna o id mesmo nï¿½o a posicï¿½
 	 */
 	public long getItemId(int position) {
 		return listaLista.get(position).getId();

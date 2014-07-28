@@ -126,6 +126,7 @@
 	<string name="op_capa_4">Barra laranja, ícone azul</string>
 	<string name="op_escolher_aparencia">Escolha a capa</string>
 	<string name="op_sair_lembrar">Apagar todos os dados do Lembrar</string>
+	<string name="m_cnf">Config</string>
 
 	
 </resources>

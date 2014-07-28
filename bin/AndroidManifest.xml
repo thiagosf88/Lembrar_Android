@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="br.thg.lmb"
+      package="br.thg.rlmb"
       android:versionName="1.9" android:versionCode="21">
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="7"/>
+<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="AppLembrar"
+    <application android:icon="@drawable/icon" 
+        android:label="@string/app_name"
+        android:allowBackup="false">
+        
+        <activity android:name="br.thg.lmb.AppLembrar"
                   android:label="@string/app_name"
                   android:configChanges="orientation|keyboardHidden">
                   
@@ -16,9 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TarefaEdit"></activity>
-        <activity android:name=".TarefaCriar"></activity>
-        <activity android:name="Configuracoes" android:screenOrientation="portrait"></activity>
+        <activity android:name="br.thg.lmb.TarefaEdit"></activity>
+        <activity android:name="br.thg.lmb.TarefaCriar"></activity>
+         <activity android:name="br.thg.lmb.util.WebViewActivity"/>
+        <activity android:name="br.thg.lmb.Configuracoes" android:screenOrientation="portrait"></activity>
 
     </application>
 </manifest>

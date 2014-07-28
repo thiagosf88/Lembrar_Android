@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import br.thg.lmb.dao.TarefasDbAdapter;
+import br.thg.rlmb.R;
 
 public class Configuracoes extends Activity {
 	

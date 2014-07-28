@@ -3,7 +3,6 @@ package br.thg.lmb;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -26,6 +25,7 @@ import br.thg.lmb.dao.TarefasDbAdapter;
 import br.thg.lmb.dominio.Lista;
 import br.thg.lmb.util.ListaAdapter;
 import br.thg.lmb.util.TokenizerEspaco;
+import br.thg.rlmb.R;
 
 public class TarefaCriar extends Activity {
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -15,7 +14,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import br.thg.lmb.AppLembrar.RealizaOperacaoOnline;
 import br.thg.lmb.dao.TarefasDbAdapter;
 import br.thg.lmb.dominio.Lista;
 import br.thg.lmb.dominio.Nota;
@@ -36,9 +35,12 @@ import br.thg.lmb.util.ListaAdapter;
 import br.thg.lmb.util.NotaAdapter;
 import br.thg.lmb.util.TokenizerEspaco;
 import br.thg.lmb.util.TrataData;
+import br.thg.lmb.util.WebViewActivity;
+import br.thg.rlmb.R;
 
 public class TarefaEdit extends Activity {
 
+	private static final int VIEW_USER_URL = 0;
 	private EditText mNameText;
 	private EditText mTagsText;
 	private EditText mUrlText;
@@ -408,7 +410,7 @@ listaPosicoes = new HashMap<Long, Integer>();
 					if (!url.contains("://")) {
 						url = "http://" + url;
 					}
-					Intent i = new Intent();
+					/*Intent i = new Intent();
 					i.setAction(Intent.ACTION_VIEW);
 					i.addCategory(Intent.CATEGORY_BROWSABLE);
 					try{
@@ -416,7 +418,12 @@ listaPosicoes = new HashMap<Long, Integer>();
 					startActivity(i);
 					}catch(Exception e){
 						link_texto.setTypeface(Typeface.DEFAULT,Typeface.NORMAL);
-					}
+					}*/
+					Intent webSite = new Intent(TarefaEdit.this, WebViewActivity.class);
+					webSite.setAction(Intent.ACTION_VIEW);
+					webSite.addCategory(Intent.CATEGORY_BROWSABLE);
+					webSite.putExtra(WebViewActivity.URL, url);
+					startActivityForResult(webSite, VIEW_USER_URL);
 				} else {
 					link_texto.setTypeface(Typeface.DEFAULT,Typeface.NORMAL);
 				}
@@ -516,4 +523,30 @@ listaPosicoes = new HashMap<Long, Integer>();
     	bt_limpar_hora.setVisibility(View.VISIBLE);
     }
 
+    
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
+
+		if (intent == null)
+			return;
+
+
+		
+		switch (requestCode) {
+		
+		case VIEW_USER_URL:
+			if(resultCode == TarefaEdit.RESULT_OK){
+				
+			}
+			if(resultCode == TarefaEdit.RESULT_CANCELED){
+				link_texto.setTypeface(Typeface.DEFAULT,Typeface.NORMAL);
+			}
+			break;
+		default:
+			
+			break;
+		}
+
+	}
 }

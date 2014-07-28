@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import br.thg.lmb.R;
+import br.thg.rlmb.R;
 import br.thg.lmb.dominio.Tarefa;
 
 public class TarefaAdapter extends BaseAdapter {
@@ -46,10 +46,10 @@ public class TarefaAdapter extends BaseAdapter {
  
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Recupera o estado da posição atual
+        // Recupera o estado da posiï¿½ï¿½o atual
         Tarefa tf = tarefaLista.get(position);
         
-        // Cria uma instância do layout XML para os objetos correspondentes
+        // Cria uma instï¿½ncia do layout XML para os objetos correspondentes
         // na View
         LayoutInflater inflater = (LayoutInflater)
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

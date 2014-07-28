@@ -126,7 +126,7 @@ public class TarefasDbAdapter {
 			.replace(DATABASE_TB_NOTAS, DATABASE_TB_NOTAS_TEMP);
 
 	private static final String DATABASE_NAME = "lembrar";
-	private static final int DATABASE_VERSION = 15; // versão será a 15
+	private static final int DATABASE_VERSION = 15; // versï¿½o serï¿½ a 15
 
 	private final Context mCtx;
 
@@ -170,11 +170,29 @@ public class TarefasDbAdapter {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			String bkpAuthToken = "";
+			Log.w(TAG,
+					"We are updating database from versiom: "
+							+ oldVersion
+							+ " to : "
+							+ newVersion
+							+ ", this action will erase all previous data, except the token!");
 
-			Log.w(TAG, "Atualizando banco de dados da versão: " + oldVersion
-					+ " para: " + newVersion
-					+ ", isso destruirá todos os dados anteriores");
+			Cursor tmp = db.query(false, DATABASE_TB_CONFIGURACOES,
+					new String[] { CHAVE_AUTH }, null, null, null, null, null,
+					null);
+			if (!tmp.isClosed() && tmp.getCount() > 0) {
+				tmp.moveToFirst();
+				bkpAuthToken = tmp.getString(tmp
+						.getColumnIndexOrThrow(CHAVE_AUTH));
+				tmp.close();
+				tmp = null;
+			} else if (!tmp.isClosed()) {
 
+				tmp.close();
+
+				tmp = null;
+			}
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TB_TAREFAS);
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TB_TAREFAS_TEMP);
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TB_LISTA);
@@ -184,8 +202,13 @@ public class TarefasDbAdapter {
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TB_NOTAS_TEMP);
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TB_OPERACOES);
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TB_CONFIGURACOES);
-			
+
 			onCreate(db);
+			if (bkpAuthToken.trim().isEmpty()) {
+				ContentValues initialValues = new ContentValues();
+				initialValues.put(CHAVE_AUTH, bkpAuthToken);
+				db.insert(DATABASE_TB_CONFIGURACOES, null, initialValues);
+			}
 
 		}
 
@@ -203,7 +226,7 @@ public class TarefasDbAdapter {
 	}
 
 	public void apagaTudo() {
-		
+
 		deletaTodasTarefas();
 		deletaTodasTarefasTemporarias();
 		deletaTodasTags();
@@ -212,7 +235,7 @@ public class TarefasDbAdapter {
 		deletaTodasListas();
 		deletaTodasNotas();
 		deletaConfiguracoes();
-		
+
 	}
 
 	/**
@@ -261,8 +284,8 @@ public class TarefasDbAdapter {
 
 		if (!tmp.isClosed() && tmp.getCount() > 0) {
 			tmp.moveToFirst();
-			cnf.putString(CHAVE_AUTH, tmp.getString(tmp
-					.getColumnIndexOrThrow(CHAVE_AUTH)));
+			cnf.putString(CHAVE_AUTH,
+					tmp.getString(tmp.getColumnIndexOrThrow(CHAVE_AUTH)));
 			if (!tmp.isNull(tmp.getColumnIndexOrThrow(CHAVE_ATUALIZA_INICIO))) {
 				cnf.putBoolean(CHAVE_ATUALIZA_INICIO, tmp.getInt(tmp
 						.getColumnIndexOrThrow(CHAVE_ATUALIZA_INICIO)) == 1);
@@ -270,8 +293,8 @@ public class TarefasDbAdapter {
 				cnf.putBoolean(CHAVE_ATUALIZA_INICIO, true);
 			}
 			if (!tmp.isNull(tmp.getColumnIndexOrThrow(CHAVE_CAPA))) {
-				cnf.putInt(CHAVE_CAPA, tmp.getInt(tmp
-						.getColumnIndexOrThrow(CHAVE_CAPA)));
+				cnf.putInt(CHAVE_CAPA,
+						tmp.getInt(tmp.getColumnIndexOrThrow(CHAVE_CAPA)));
 			} else {
 				cnf.putInt(CHAVE_CAPA, 4);
 			}
@@ -363,7 +386,7 @@ public class TarefasDbAdapter {
 			resultado = mDb.insert(DATABASE_TB_TAREFAS_TEMP, null,
 					initialValues);
 		else
-			resultado = new Long(mDb.update(DATABASE_TB_TAREFAS_TEMP,
+			resultado = Long.valueOf(mDb.update(DATABASE_TB_TAREFAS_TEMP,
 					initialValues, CHAVE_IDSERIES + "=" + idSeries + " AND "
 							+ CHAVE_ID + "=" + id, null));
 		temp.close();
@@ -389,7 +412,7 @@ public class TarefasDbAdapter {
 		return mDb.insert(DATABASE_TB_OPERACOES, null, initialValues);
 	}
 
-	public long inseriAuthToken(String auth_token) {
+	public long insertAuthToken(String auth_token) {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(CHAVE_AUTH, auth_token);
 		return mDb.insert(DATABASE_TB_CONFIGURACOES, null, initialValues);
@@ -500,7 +523,7 @@ public class TarefasDbAdapter {
 
 		return a > 0;
 	}
-	
+
 	public boolean deletaConfiguracoes() {
 
 		int a = 0;
@@ -569,8 +592,7 @@ public class TarefasDbAdapter {
 			if (tmpT != null && tmpT.moveToFirst()) {
 				t = new Tarefa();
 
-				t.setName(tmpT
-						.getString(tmpT.getColumnIndexOrThrow(CHAVE_NAME)));
+				t.setName(tmpT.getString(tmpT.getColumnIndexOrThrow(CHAVE_NAME)));
 				t.setId(id);
 				t.setIdSeries(idSeries);
 				t.setLista(tmpT.getString(tmpT
@@ -604,13 +626,14 @@ public class TarefasDbAdapter {
 
 		Cursor mCursor =
 
-		mDb
-				.query(true, DATABASE_TB_TAREFAS, new String[] {
-						CHAVE_IDSERIES, CHAVE_ID, CHAVE_NAME, CHAVE_LISTA,
-						CHAVE_DATAPREVISTA, CHAVE_HORAPREVISTA, CHAVE_PRIO,
-						CHAVE_REPETICAO, CHAVE_URL }, CHAVE_IDSERIES + "="
-						+ idSeries + " AND " + CHAVE_ID + "=" + id, null, null,
-						null, null, null);
+		mDb.query(
+				true,
+				DATABASE_TB_TAREFAS,
+				new String[] { CHAVE_IDSERIES, CHAVE_ID, CHAVE_NAME,
+						CHAVE_LISTA, CHAVE_DATAPREVISTA, CHAVE_HORAPREVISTA,
+						CHAVE_PRIO, CHAVE_REPETICAO, CHAVE_URL },
+				CHAVE_IDSERIES + "=" + idSeries + " AND " + CHAVE_ID + "=" + id,
+				null, null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
@@ -733,8 +756,9 @@ public class TarefasDbAdapter {
 		for (int i = 0; i < mCursor.getCount(); i++) {
 			mCursor.moveToPosition(i);
 			l = new Lista(Long.parseLong(mCursor.getString(mCursor
-					.getColumnIndexOrThrow(CHAVE_ID))), mCursor
-					.getString(mCursor.getColumnIndexOrThrow(CHAVE_NOME_LISTA)));
+					.getColumnIndexOrThrow(CHAVE_ID))),
+					mCursor.getString(mCursor
+							.getColumnIndexOrThrow(CHAVE_NOME_LISTA)));
 			// The Cursor is now set to the right position
 			listas.add(l);
 
@@ -781,8 +805,7 @@ public class TarefasDbAdapter {
 			mCursor.moveToPosition(i);
 			op = new Operacao();
 			// The Cursor is now set to the right position
-			op.setTipo(mCursor
-					.getInt(mCursor.getColumnIndexOrThrow(CHAVE_TIPO)));
+			op.setTipo(mCursor.getInt(mCursor.getColumnIndexOrThrow(CHAVE_TIPO)));
 			op.setIdSeriesTarefa(mCursor.getLong(mCursor
 					.getColumnIndexOrThrow(CHAVE_IDSERIES)));
 			op.setIdTarefa(mCursor.getLong(mCursor

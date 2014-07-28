@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -29,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -37,7 +37,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import br.thg.lmb.dao.TarefasDbAdapter;
 import br.thg.lmb.dominio.Lista;
 import br.thg.lmb.dominio.Nota;
@@ -49,12 +48,15 @@ import br.thg.lmb.util.ListaAdapter;
 import br.thg.lmb.util.TarefaAdapter;
 import br.thg.lmb.util.TrataData;
 import br.thg.lmb.util.TrataTag;
+import br.thg.lmb.util.WebViewActivity;
+import br.thg.rlmb.R;
 
 public class AppLembrar extends ListActivity {
 
-	private static final int OPERACAO_CRIAR = 0;
-	private static final int OPERACAO_EDITAR = 1;
-	private static final int OPERACAO_CONFIGURAR = 2;
+	private static final int CREATE_TASK_OPERATION = 0;
+	private static final int EDIT_TASK_OPERATION = CREATE_TASK_OPERATION + 1;	
+	private static final int CONFIGURE_OPERATION = EDIT_TASK_OPERATION + 1;
+	private static final int GET_AUTHENTICATION_OPERATION = CONFIGURE_OPERATION + 1;
 	
 	private static final int DELETE_ID = Menu.FIRST;
 	private static final int ADIAR_ID = Menu.FIRST + 1;
@@ -124,13 +126,18 @@ public class AppLembrar extends ListActivity {
 		bt_redirecionar.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View view) {
-				Intent i = new Intent();
+				/*Intent i = new Intent();
 				i.setAction(Intent.ACTION_VIEW);
 				i.addCategory(Intent.CATEGORY_BROWSABLE);
-				i.setData(Uri.parse(lembrar.autentica()));
-				startActivity(i);
-
-				preAbertura();
+				i.setData(Uri.parse(lembrar.getUrlToAuthentication()));
+				System.err.println(lembrar.getUrlToAuthentication());
+				startActivity(i);*/
+				Intent webSite = new Intent(AppLembrar.this, WebViewActivity.class);
+				webSite.setAction(Intent.ACTION_VIEW);
+				webSite.addCategory(Intent.CATEGORY_BROWSABLE);
+				webSite.putExtra(WebViewActivity.URL, lembrar.getUrlToAuthentication());
+				startActivityForResult(webSite, GET_AUTHENTICATION_OPERATION);
+				//preAbertura();
 
 			}
 		});
@@ -147,13 +154,20 @@ public class AppLembrar extends ListActivity {
 		bt_redirecionar.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View view) {
-				Intent i = new Intent();
+				/*Intent i = new Intent();
 				i.setAction(Intent.ACTION_VIEW);
 				i.addCategory(Intent.CATEGORY_BROWSABLE);
-				i.setData(Uri.parse(lembrar.autentica()));
-				startActivity(i);
-
-				preAbertura();
+				i.setData(Uri.parse(lembrar.getUrlToAuthentication()));
+				System.err.println(lembrar.getUrlToAuthentication());
+				startActivity(i);*/
+				
+				Intent webSite = new Intent(AppLembrar.this, WebViewActivity.class);
+				webSite.setAction(Intent.ACTION_VIEW);
+				webSite.addCategory(Intent.CATEGORY_BROWSABLE);
+				webSite.putExtra(WebViewActivity.URL, lembrar.getUrlToAuthentication());
+				
+				startActivityForResult(webSite, GET_AUTHENTICATION_OPERATION);
+				//preAbertura();
 
 			}
 		});
@@ -165,7 +179,7 @@ public class AppLembrar extends ListActivity {
 				if (auth_token != null && !auth_token.trim().equals("")) {
 					if (!mDbHelper.isAberto())
 						mDbHelper.open();
-					mDbHelper.inseriAuthToken(auth_token);
+					mDbHelper.insertAuthToken(auth_token);
 					mDbHelper.close();
 					inicio();
 
@@ -226,7 +240,7 @@ public class AppLembrar extends ListActivity {
 			public void onClick(View view) {
 				Intent i = new Intent(AppLembrar.this, TarefaCriar.class);
 
-				startActivityForResult(i, OPERACAO_CRIAR);
+				startActivityForResult(i, CREATE_TASK_OPERATION);
 			}
 		});
 
@@ -284,6 +298,7 @@ public class AppLembrar extends ListActivity {
 		if (temInternet) {
 			todasListas = lembrar.getListas(auth_token);
 			todasTarefas = lembrar.todasAsTarefas(auth_token, diferencaFuso);
+			
 		}
 	}
 
@@ -405,7 +420,7 @@ public class AppLembrar extends ListActivity {
 				.getUrl());
 		
 		tarefaSelecionada = todasTarefas.get(position);
-		startActivityForResult(i, OPERACAO_EDITAR);
+		startActivityForResult(i, EDIT_TASK_OPERATION);
 
 	}
 
@@ -419,7 +434,7 @@ public class AppLembrar extends ListActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 		Bundle extras = intent.getExtras();
 		
-		if(requestCode == OPERACAO_CONFIGURAR){
+		/*if(requestCode == OPERACAO_CONFIGURAR){
 			if(extras != null && extras.containsKey("FINALIZAR") && extras.getInt("FINALIZAR") == -7)
 				finish();
 			if(extras != null && extras.getInt(TarefasDbAdapter.CHAVE_CAPA) != aparenciaEscolhida){
@@ -430,6 +445,26 @@ public class AppLembrar extends ListActivity {
 		else{
 		extras.putInt("tipoOperacao", requestCode);
 		new RealizaOperacaoOnline().execute(extras, null, null);
+		}*/
+		
+		switch (requestCode) {
+		case CONFIGURE_OPERATION:
+			if(extras != null && extras.containsKey("FINALIZAR") && extras.getInt("FINALIZAR") == -7)
+				finish();
+			if(extras != null && extras.getInt(TarefasDbAdapter.CHAVE_CAPA) != aparenciaEscolhida){
+				aparenciaEscolhida = extras.getInt(TarefasDbAdapter.CHAVE_CAPA);
+			mudaCapa(aparenciaEscolhida);
+			}
+			break;
+		case GET_AUTHENTICATION_OPERATION:
+			if(resultCode == AppLembrar.RESULT_OK){
+				preAbertura();
+			}
+			break;
+		default:
+			extras.putInt("tipoOperacao", requestCode);
+			new RealizaOperacaoOnline().execute(extras, null, null);
+			break;
 		}
 
 	}
@@ -662,7 +697,7 @@ public class AppLembrar extends ListActivity {
 			temInternet();
 			switch (extras.getInt("tipoOperacao")) {
 
-			case OPERACAO_CRIAR:
+			case CREATE_TASK_OPERATION:
 
 				Calendar cd = Calendar.getInstance();
 				long iddef = cd.getTimeInMillis() / 1000;
@@ -681,7 +716,7 @@ public class AppLembrar extends ListActivity {
 					publishProgress(getResources().getString(R.string.msg_adicionando2));
 
 				} else {
-					publishProgress("Agendando operação...");
+					publishProgress("Agendando operaï¿½ï¿½o...");
 					if (!mDbHelper.isAberto())
 						mDbHelper.open();
 
@@ -705,7 +740,7 @@ public class AppLembrar extends ListActivity {
 				mDbHelper.close();
 				break;
 
-			case OPERACAO_EDITAR:
+			case EDIT_TASK_OPERATION:
 
 				idSeries = extras.getLong(TarefasDbAdapter.CHAVE_IDSERIES);
 				id = extras.getLong(TarefasDbAdapter.CHAVE_ID);
@@ -1070,7 +1105,7 @@ public class AppLembrar extends ListActivity {
 			dados.putInt(TarefasDbAdapter.CHAVE_CAPA, aparenciaEscolhida);
 			dados.putBoolean(TarefasDbAdapter.CHAVE_ATUALIZA_INICIO, sincronizarInicio);
 			i.putExtras(dados);
-			startActivityForResult(i, OPERACAO_CONFIGURAR);
+			startActivityForResult(i, CONFIGURE_OPERATION);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

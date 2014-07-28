@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +18,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import android.os.AsyncTask;
 import android.util.Log;
 import br.thg.lmb.dominio.Lista;
 import br.thg.lmb.dominio.Nota;
@@ -28,6 +30,9 @@ import br.thg.lmb.util.TrataRepeticao;
 public class Lembrar {
 
 	String frobFinal;
+	private String apiKey = "7ccb7b5d11fca89bb281e092211ed3a6";
+	private String sharedKey = "f053f44f05078ac1"; 
+	
 
 	public boolean completarTarefa(String auth_token, String id,
 			String idSeries, String lista) {
@@ -37,14 +42,13 @@ public class Lembrar {
 			return false;
 
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.completetask_id" + id
 				+ "taskseries_id" + idSeries + "timeline" + timeline);
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.complete"
@@ -82,14 +86,13 @@ public class Lembrar {
 			return false;
 
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.postponetask_id" + id
 				+ "taskseries_id" + idSeries + "timeline" + timeline);
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.postpone"
@@ -127,14 +130,13 @@ public class Lembrar {
 			return false;
 
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.deletetask_id" + id
 				+ "taskseries_id" + idSeries + "timeline" + timeline);
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.delete"
@@ -172,8 +174,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.setNamename" + texto
 				+ "task_id" + id + "taskseries_id" + idSeries + "timeline"
 				+ timeline;
@@ -184,7 +185,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.setName"
@@ -220,8 +221,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.setTagstags" + tags
 				+ "task_id" + id + "taskseries_id" + idSeries + "timeline"
 				+ timeline;
@@ -230,7 +230,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.setTags"
@@ -266,8 +266,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.setPrioritypriority"
 				+ prioridade + "task_id" + id + "taskseries_id" + idSeries
 				+ "timeline" + timeline;
@@ -276,7 +275,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.setPriority"
@@ -323,8 +322,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.setURL" + "task_id" + id
 				+ "taskseries_id" + idSeries + "timeline" + timeline + termoURL
 				+ url;
@@ -333,7 +331,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.setURL"
@@ -400,8 +398,7 @@ public class Lembrar {
 
 		}
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + due + data
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + due + data
 				+ timezone + "formatxml" + has_due_time + temHora + "list_id"
 				+ lista + "methodrtm.tasks.setDueDate" + parse + "task_id" + id
 				+ "taskseries_id" + idSeries + "timeline" + timeline;
@@ -420,7 +417,7 @@ public class Lembrar {
 		String urlString = "https://www.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.setDueDate"
@@ -461,8 +458,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.addTagstags" + tags
 				+ "task_id" + id + "taskseries_id" + idSeries + "timeline"
 				+ timeline;
@@ -471,7 +467,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.addTags"
@@ -507,8 +503,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "list_id" + lista + "methodrtm.tasks.setRecurrencerepeat"
 				+ repeticao + "task_id" + id + "taskseries_id" + idSeries
 				+ "timeline" + timeline;
@@ -517,7 +512,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.setRecurrence"
@@ -554,8 +549,7 @@ public class Lembrar {
 		if (timeline == null)
 			return false;
 
-		String api_sig = "", tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String api_sig = "", tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ "from_list_id" + listaOrigem + "methodrtm.tasks.moveTo"
 				+ "task_id" + id + "taskseries_id" + idSeries + "timeline"
 				+ timeline + "to_list_id" + listaDestino;
@@ -564,7 +558,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&format=xml"
 				+ "&method=rtm.tasks.moveTo"
@@ -636,8 +630,7 @@ public class Lembrar {
 		nome += prioridade + repeticao + limite + hora + tags + url;
 
 		String api_sig = "";
-		String tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ linhaLista + "methodrtm.tasks.addname" + nome + "parse1"
 				+ "timeline" + timeline;
 		api_sig = Md5.md5(tmp);
@@ -647,7 +640,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&name="
 				+ nome
@@ -705,8 +698,7 @@ public class Lembrar {
 			return null;
 
 		String api_sig = "";
-		String tmp = "f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token + "formatxml"
+		String tmp = sharedKey + "api_key" + apiKey + "auth_token" + auth_token + "formatxml"
 				+ linhaLista + "methodrtm.tasks.addname" + nome + "timeline"
 				+ timeline;
 		api_sig = Md5.md5(tmp);
@@ -716,7 +708,7 @@ public class Lembrar {
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&name="
 				+ nome
@@ -762,13 +754,12 @@ public class Lembrar {
 	public ArrayList<Tarefa> todasAsTarefas(String auth_token,
 			float diferencaFuso) {
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
 				+ "filterstatus:incompleteformatxmlmethodrtm.tasks.getList");
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&filter=status%3Aincomplete&method=rtm.tasks.getList&format=xml";
 
@@ -936,12 +927,11 @@ public class Lembrar {
 
 	public ArrayList<Lista> getListas(String auth_token) {
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
 				+ "methodrtm.lists.getList");
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
-				+ "&api_key=7ccb7b5d11fca89bb281e092211ed3a6&&auth_token="
+				+ "&api_key="+apiKey+"&auth_token="
 				+ auth_token + "&method=rtm.lists.getList";
 
 		Document d = getDocument(urlString);
@@ -979,13 +969,12 @@ public class Lembrar {
 
 	public String criaTimeline(String auth_token) {
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
 				+ "formatxmlmethodrtm.timelines.create");
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&method=rtm.timelines.create&format=xml";
 
@@ -1017,12 +1006,12 @@ public class Lembrar {
 	}
 
 	/*
-	 * Método ainda sem uso mas a principio não deve ser apagado public void
+	 * Mï¿½todo ainda sem uso mas a principio nï¿½o deve ser apagado public void
 	 * checkToken() { String api_sig = ""; api_sig =
 	 * Md5.md5("api_key7ccb7b5d11fc" +
 	 * "a89bb281e092211ed3a6methodrtm.auth.checkToken"); String urlString =
 	 * "http://api.rememberthemilk.com/services/rest/?api_sig=" + api_sig +
-	 * "&api_key=" + "7ccb7b5d11fca89bb281e092211ed3a6&auth_token=" +
+	 * "&api_key=" + apiKey + "&auth_token=" +
 	 * "d571422a1eb670d52222ec00d190814cb83b9580&method=rtm.auth.checkToken";
 	 * 
 	 * }
@@ -1030,13 +1019,12 @@ public class Lembrar {
 
 	private String obtemTimezone(String auth_token) {
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
 				+ "formatxmlmethodrtm.settings.getList");
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&method=rtm.settings.getList&format=xml";
 
@@ -1071,13 +1059,12 @@ public class Lembrar {
 
 		String minhaZona = obtemTimezone(auth_token);
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6auth_token" + auth_token
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
 				+ "formatxmlmethodrtm.timezones.getList");
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&auth_token="
+				+ apiKey + "&auth_token="
 				+ auth_token
 				+ "&method=rtm.timezones.getList&format=xml";
 
@@ -1123,27 +1110,28 @@ public class Lembrar {
 			return "";
 
 		String api_sig = "";
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6frob" + frobFinal
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "frob" + frobFinal
 				+ "methodrtm.auth.getToken");
 		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&frob="
+				+ apiKey + "&frob="
 				+ frobFinal
 				+ "&method=rtm.auth.getToken";
 
-		Document d = getDocument(urlString);
-
+		Document d = getDocumentInBack(urlString);
+		
 		NodeList nodeLst = d.getElementsByTagName("rsp");
+		
 		for (int i = 0; i < nodeLst.getLength(); i++) {
 
 			Node node = nodeLst.item(i);
 			Element pai = null;
 			if (node.getNodeType() == Node.ELEMENT_NODE)
 				pai = (Element) node;
+			System.out.println(pai.getAttribute("stat").equals("ok"));
 			if (pai.getAttribute("stat").equals("ok")) {
-
+				
 				return ((Element) pai.getElementsByTagName("token").item(0))
 						.getChildNodes().item(0).getNodeValue();
 
@@ -1154,14 +1142,13 @@ public class Lembrar {
 
 	}
 
-	public String autentica() {
+	public String getUrlToAuthentication() {
 		String frob = getFrob();
 		String api_sig = "";
-
-		api_sig = Md5.md5("f053f44f05078ac1api_key7ccb7b5d11fc"
-				+ "a89bb281e092211ed3a6frob" + frob + "permsdelete");
-		String urlString = "http://api.rememberthemilk.com/services/auth/?api_key="
-				+ "7ccb7b5d11fca89bb281e092211ed3a6&perms=delete&frob="
+		
+		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "frob" + frob + "permsdelete");
+		String urlString = "https://api.rememberthemilk.com/services/auth/?api_key="
+				+ apiKey + "&perms=delete&frob="
 				+ frob
 				+ "&api_sig=" + api_sig;
 		return urlString;
@@ -1172,14 +1159,13 @@ public class Lembrar {
 		String md5 = "";
 
 		md5 = Md5
-				.md5("f053f44f05078ac1api_key7ccb7b5d11fca89bb281e092211ed3a6methodrtm.auth.getFrob");
+				.md5(sharedKey + "api_key" + apiKey + "methodrtm.auth.getFrob");
 
 		String frob = null;
 		String urlString = "https://api.rememberthemilk.com/services/rest/"
-				+ "?api_sig=" + md5 + "&api_key=7ccb7b5d"
-				+ "11fca89bb281e092211ed3a6&method=rtm.auth.getFrob";
+				+ "?api_sig=" + md5 + "&api_key="+apiKey+"&method=rtm.auth.getFrob";
 
-		Document d = getDocument(urlString);
+		Document d = getDocumentInBack(urlString);
 		if (d == null)
 			return "";
 		NodeList nodeLst = d.getElementsByTagName("rsp");
@@ -1200,9 +1186,29 @@ public class Lembrar {
 				frobFinal = null;
 			}
 		}
+		
 		return frob;
 	}
 
+	public Document getDocumentInBack(String urlString) {
+		
+		
+		ConnectInBack cib = new ConnectInBack();
+		cib.execute(urlString);
+		try {
+			
+			return cib.get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public Document getDocument(String urlString) {
 		URL url = null;
 		Document doc = null;
@@ -1238,5 +1244,48 @@ public class Lembrar {
 		}
 		return doc;
 	}
+	
+	private class ConnectInBack extends AsyncTask<String, Document, Document> {
+		URL url = null;
+		Document doc = null;
+		HttpsURLConnection urlConnection = null;
+		InputStream in = null;
+
+		@Override
+		protected Document doInBackground(String... params) {
+			
+			try {
+				url = new URL(params[0]);
+				
+
+			urlConnection = (HttpsURLConnection) url.openConnection();
+			// urlConnection.setRequestProperty("Accept-Charset", "ISO-8859-1");
+			urlConnection.setRequestProperty("Request-Method", "GET");
+			// Log.v("set", urlConnection.getContentEncoding());
+			urlConnection.setDoInput(true);
+			urlConnection.setDoOutput(false);
+			urlConnection.connect();
+			in = new BufferedInputStream(urlConnection.getInputStream());
+System.out.println(params[0]);
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+
+			doc = db.parse(in);
+
+			doc.getDocumentElement().normalize();
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+				return null;
+			} finally {
+				urlConnection.disconnect();
+			}
+			System.out.println(doc);
+			return doc;
+		}
+		
+     
+	 }
 
 }

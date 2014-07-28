@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import br.thg.lmb.AppLembrar;
 
 public class TestWebView extends WebViewClient {
 	
-	AppLembrar actRef;
+	WebViewActivity actRef;
 	boolean timeout = true;
-	public TestWebView(AppLembrar wva){
+	public TestWebView(WebViewActivity wva){
 		actRef = wva;
 	}
 /*

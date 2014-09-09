@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lembrar</string>
+    <string name="app_name">Relembrar </string>
     <string name="semTarefas">Não há tarefas nessa lista</string>
     
     <color name="fundo_branco">#fff</color>

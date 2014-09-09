@@ -5,37 +5,37 @@
     android:layout_height="fill_parent"
     android:background="@color/fundo_branco">
     
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/fundo_branco" android:orientation="vertical">
-    <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout2" android:layout_weight="1" android:gravity="clip_horizontal" android:layout_gravity="fill_horizontal" android:paddingTop="7dp" android:paddingBottom="7dp" android:layout_height="54dip">
-        <TextView android:id="@+id/textView1" android:layout_height="wrap_content" android:textSize="20dp" android:layout_width="fill_parent" android:layout_weight="2" android:layout_gravity="center_horizontal" android:text="@string/t_tarefa"></TextView>
+    <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout2" android:layout_weight="1" android:gravity="clip_horizontal" android:layout_gravity="fill_horizontal" android:paddingTop="7sp" android:paddingBottom="7sp" android:layout_height="54dip">
+        <TextView android:id="@+id/textView1" android:layout_height="wrap_content" android:textSize="20sp" android:layout_width="fill_parent" android:layout_weight="2" android:layout_gravity="center_horizontal" android:text="@string/t_tarefa"></TextView>
         <Button android:layout_width="fill_parent" android:typeface="normal" android:layout_weight="2" android:id="@+id/bt_adiar_tarefa" android:layout_height="fill_parent" android:text="@string/b_adiar"></Button>
         <Button android:layout_width="fill_parent" android:layout_weight="2" android:id="@+id/bt_completar_tarefa" android:layout_height="fill_parent" android:text="@string/b_completar"></Button>
     </LinearLayout>
-    <EditText android:layout_width="fill_parent" android:id="@+id/nome" android:layout_height="wrap_content" android:textSize="18dp" android:minHeight="110dp" android:layout_weight="1" android:inputType="textMultiLine"></EditText>
-    <TextView android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:textSize="20dp" android:text="@string/t_lista"></TextView>
-    <Spinner android:layout_height="50dp" android:layout_width="fill_parent" android:layout_weight="1" android:id="@+id/edit_lista"></Spinner>
-    <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:textSize="20dp" android:text="@string/t_tags"></TextView>
-    <EditText android:layout_width="fill_parent" android:id="@+id/ed_tags_tarefa" android:layout_height="wrap_content" android:textSize="20dp" android:minHeight="40dp" android:inputType="text" android:layout_weight="1"></EditText>
-    <RelativeLayout android:layout_width="fill_parent" android:id="@+id/relativeLayout2" android:layout_weight="1" android:layout_height="200dp">
-        <TextView android:layout_height="wrap_content" android:id="@+id/labelData" android:textSize="20dp" android:layout_width="130dp" android:text="@string/t_limite"></TextView>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/preto" android:id="@+id/ed_text_data" android:textSize="20dp" android:layout_below="@+id/labelData" android:layout_alignLeft="@+id/labelData" android:layout_alignRight="@+id/labelData" android:text="00/00/0000" android:paddingBottom="10dp"></TextView>
+    <EditText android:layout_width="fill_parent" android:id="@+id/nome" android:layout_height="wrap_content" android:textSize="18sp" android:minHeight="110sp" android:layout_weight="1" android:inputType="textMultiLine|textCapWords"></EditText>
+    <TextView android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:textSize="20sp" android:text="@string/t_lista"></TextView>
+    <Spinner android:layout_height="50sp" android:layout_width="fill_parent" android:layout_weight="1" android:id="@+id/edit_lista"></Spinner>
+    <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:textSize="20sp" android:text="@string/t_tags"></TextView>
+    <EditText android:layout_width="fill_parent" android:id="@+id/ed_tags_tarefa" android:layout_height="wrap_content" android:textSize="20sp" android:minHeight="40sp" android:inputType="text" android:layout_weight="1"></EditText>
+    <RelativeLayout android:layout_width="fill_parent" android:id="@+id/relativeLayout2" android:layout_weight="1" android:layout_height="200sp">
+        <TextView android:layout_height="wrap_content" android:id="@+id/labelData" android:textSize="20sp" android:layout_width="130sp" android:text="@string/t_limite"></TextView>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/preto" android:id="@+id/ed_text_data" android:textSize="20sp" android:layout_below="@+id/labelData" android:layout_alignLeft="@+id/labelData" android:layout_alignRight="@+id/labelData" android:text="00/00/0000" android:paddingBottom="10sp"></TextView>
         <Button android:layout_width="wrap_content" android:layout_toRightOf="@+id/ed_text_data" android:layout_height="wrap_content" android:layout_alignTop="@+id/ed_text_data" android:layout_alignBottom="@+id/ed_text_data" android:text="x" android:id="@+id/bt_limpar_data"></Button>
-        <TextView android:textSize="20dp" android:layout_width="wrap_content" android:id="@+id/textView5" android:layout_height="wrap_content" android:layout_below="@+id/ed_text_data" android:layout_alignLeft="@+id/ed_text_data" android:layout_alignRight="@+id/ed_text_data" android:text="@string/t_hora"></TextView>
-        <TextView android:layout_below="@+id/textView5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/textView5" android:layout_alignRight="@+id/textView5" android:textSize="20dp" android:text="00:00" android:textColor="@color/preto" android:paddingBottom="10dp" android:id="@+id/ed_text_hora"></TextView>
-        <TextView android:id="@+id/TextView01" android:layout_width="130dp" android:layout_height="wrap_content" android:textSize="20dp" android:layout_below="@+id/ed_text_hora" android:layout_alignLeft="@+id/ed_text_hora" android:text="@string/t_repeticao"></TextView>
+        <TextView android:textSize="20sp" android:layout_width="wrap_content" android:id="@+id/textView5" android:layout_height="wrap_content" android:layout_below="@+id/ed_text_data" android:layout_alignLeft="@+id/ed_text_data" android:layout_alignRight="@+id/ed_text_data" android:text="@string/t_hora"></TextView>
+        <TextView android:layout_below="@+id/textView5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/textView5" android:layout_alignRight="@+id/textView5" android:textSize="20sp" android:text="00:00" android:textColor="@color/preto" android:paddingBottom="10sp" android:id="@+id/ed_text_hora"></TextView>
+        <TextView android:id="@+id/TextView01" android:layout_width="130sp" android:layout_height="wrap_content" android:textSize="20sp" android:layout_below="@+id/ed_text_hora" android:layout_alignLeft="@+id/ed_text_hora" android:text="@string/t_repeticao"></TextView>
         <MultiAutoCompleteTextView android:layout_height="wrap_content" android:layout_below="@+id/TextView01" android:layout_alignLeft="@+id/TextView01" android:id="@+id/auto_compl_repeticao" android:layout_width="fill_parent" android:lines="1" android:maxLines="1" android:minLines="1" android:isScrollContainer="false" android:inputType="textAutoComplete" android:hint="@string/t_dica"></MultiAutoCompleteTextView>
         <Button android:layout_width="wrap_content" android:text="x" android:layout_height="wrap_content" android:layout_toRightOf="@+id/ed_text_hora" android:layout_alignTop="@+id/ed_text_hora" android:layout_alignBottom="@+id/ed_text_hora" android:id="@+id/bt_limpar_hora"></Button>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/textView4" android:layout_alignParentRight="true" android:textSize="20dp" android:text="@string/t_prioridade"></TextView>
-        <Button android:textSize="25dp" android:id="@+id/bt_prioridade" android:text="-" android:layout_width="60dip" android:layout_height="wrap_content" android:layout_below="@+id/textView4" android:layout_alignLeft="@+id/textView4" android:layout_alignRight="@+id/textView4"></Button>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/textView4" android:layout_alignParentRight="true" android:textSize="20sp" android:text="@string/t_prioridade"></TextView>
+        <Button android:textSize="25sp" android:id="@+id/bt_prioridade" android:text="-" android:layout_width="60dip" android:layout_height="wrap_content" android:layout_below="@+id/textView4" android:layout_alignLeft="@+id/textView4" android:layout_alignRight="@+id/textView4"></Button>
     </RelativeLayout>
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:paddingTop="25dp" android:layout_weight="1" android:orientation="vertical">
-        <TextView android:clickable="true" android:textSize="20dp" android:text="Link" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ed_link_texto"></TextView>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:paddingTop="25sp" android:layout_weight="1" android:orientation="vertical">
+        <TextView android:clickable="true" android:textSize="20sp" android:text="Link" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ed_link_texto"></TextView>
         <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/ed_text_url" android:isScrollContainer="true" android:inputType="textMultiLine|textUri"></EditText>
-        <TextView android:layout_width="wrap_content" android:id="@+id/ed_notas_texto" android:layout_height="wrap_content" android:clickable="true" android:visibility="invisible" android:textSize="20dp" android:text="@string/t_notas" android:paddingBottom="15dip"></TextView>
-        <Button android:id="@+id/bt_salvar" android:layout_width="fill_parent" android:layout_height="60dp" android:textSize="20dp" android:layout_weight="2" android:text="@string/b_salvar"></Button>
+        <TextView android:layout_width="wrap_content" android:id="@+id/ed_notas_texto" android:layout_height="wrap_content" android:clickable="true" android:visibility="invisible" android:textSize="20sp" android:text="@string/t_notas" android:paddingBottom="15dip"></TextView>
+        <Button android:id="@+id/bt_salvar" android:layout_width="fill_parent" android:layout_height="60sp" android:textSize="20sp" android:layout_weight="2" android:text="@string/b_salvar"></Button>
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

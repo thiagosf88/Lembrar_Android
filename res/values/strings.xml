@@ -82,7 +82,7 @@
     <string name="msg_autorizacao">You are not authorized to access this app to your account!</string>
     <string name="msg_sem_rede2" >No Internet! All changes will take effect only after an internet connection!</string>  
 	<string name="str_hoje">Today</string>
-	<string name="str_vencidas">Overdue</string>
+	<string name="lst_vencidas">Overdue</string>
 	<string name="str_entrada">Inbox</string>
 	<string name="str_enviadas">Sent</string>
 	<string name="msg_conectando">Connecting...</string>
@@ -125,6 +125,11 @@
 	<string name="op_capa_4">Orange bar, blue icon</string>
 	<string name="op_escolher_aparencia">Choose skin</string>
 	<string name="op_sair_lembrar">Delete all data from Lembrar</string>
+	<string name="lst_todas">All tasks</string>
+	<string name="tx_logar">Have you a account?</string>
+	<string name="tx_criar_conta">Are you new here?</string>
+	<string name="btx_logar">Log in</string>
+	<string name="btx_criar_conta">Sign up</string>
 	
 	
 

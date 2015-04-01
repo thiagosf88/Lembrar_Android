@@ -1,4 +1,4 @@
-package br.thg.lmb;
+package br.thg.rlmb;
 
 import android.app.Activity;
 import android.app.AlertDialog;

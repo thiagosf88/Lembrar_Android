@@ -1,4 +1,4 @@
-package br.thg.lmb;
+package br.thg.rlmb;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -30,8 +30,8 @@ import br.thg.lmb.util.TrataRepeticao;
 public class Lembrar {
 
 	String frobFinal;
-	private String apiKey = "7ccb7b5d11fca89bb281e092211ed3a6";
-	private String sharedKey = "f053f44f05078ac1"; 
+	private final static String apiKey = "7ccb7b5d11fca89bb281e092211ed3a6";
+	private final static String sharedKey = "f053f44f05078ac1"; 
 	
 
 	public boolean completarTarefa(String auth_token, String id,
@@ -414,7 +414,7 @@ public class Lembrar {
 		else {
 			parse = "&parse=1";
 		}
-		String urlString = "https://www.rememberthemilk.com/services/rest/?api_sig="
+		String urlString = "https://api.rememberthemilk.com/services/rest/?api_sig="
 				+ api_sig
 				+ "&api_key="
 				+ apiKey + "&auth_token="
@@ -751,7 +751,7 @@ public class Lembrar {
 		return tarefaAdicionada;
 	}
 
-	public ArrayList<Tarefa> todasAsTarefas(String auth_token,
+	public ArrayList<Tarefa> testJTodasAsTarefas(String auth_token,
 			float diferencaFuso) {
 		String api_sig = "";
 		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
@@ -908,6 +908,8 @@ public class Lembrar {
 									.getElementsByTagName("task").item(rp))
 									.getAttribute("id")));
 							tarefas.add(tmp);
+							if(tarefas.size() == 200) //Esse numero define o numero de tarefas baixaddas
+								return tarefas;
 							tmp = null;
 							tmp = tmpR;
 						}
@@ -925,7 +927,7 @@ public class Lembrar {
 		return tarefas;
 	}
 
-	public ArrayList<Lista> getListas(String auth_token) {
+	public ArrayList<Lista> testJgetListas(String auth_token) {
 		String api_sig = "";
 		api_sig = Md5.md5(sharedKey + "api_key" + apiKey + "auth_token" + auth_token
 				+ "methodrtm.lists.getList");

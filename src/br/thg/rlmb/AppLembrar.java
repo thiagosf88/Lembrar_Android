@@ -1,4 +1,4 @@
-package br.thg.lmb;
+package br.thg.rlmb;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,9 +19,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -56,8 +58,7 @@ public class AppLembrar extends ListActivity {
 	private static final int CREATE_TASK_OPERATION = 0;
 	private static final int EDIT_TASK_OPERATION = CREATE_TASK_OPERATION + 1;	
 	private static final int CONFIGURE_OPERATION = EDIT_TASK_OPERATION + 1;
-	private static final int GET_AUTHENTICATION_OPERATION = CONFIGURE_OPERATION + 1;
-	
+
 	private static final int DELETE_ID = Menu.FIRST;
 	private static final int ADIAR_ID = Menu.FIRST + 1;
 	private static final int COMPLETAR_ID = Menu.FIRST + 2;
@@ -72,8 +73,8 @@ public class AppLembrar extends ListActivity {
 	private int aparenciaEscolhida = APARENCIA_BARRA_AZUL_ICONE_LARANJA;
 	
 	private Long TodasTarefas_Id;
-	private Long IdTarefasHoje = new Long(Integer.MIN_VALUE);
-	public static final Long IdTarefasVencidas = new Long(Integer.MIN_VALUE + 1);
+	private Long IdTarefasHoje = Long.valueOf(Integer.MIN_VALUE);
+	public static final Long IdTarefasVencidas = Long.valueOf(Integer.MIN_VALUE + 1);
 	private float diferencaFuso = 0;
 	private String auth_token = "";
 	private boolean sincronizarInicio = true;
@@ -88,8 +89,6 @@ public class AppLembrar extends ListActivity {
 	TextView listaVazia;
 	TextView texto_msg;
 	Button bt_adicionar;
-	Button bt_redirecionar;
-	Button bt_iniciar;
 	Spinner sp_listas;
 	ImageView iconeLembrar;
 	private static Lista listaSelecionada;
@@ -109,97 +108,16 @@ public class AppLembrar extends ListActivity {
 		aparenciaEscolhida = dados.getInt(TarefasDbAdapter.CHAVE_CAPA);
 		sincronizarInicio = dados.getBoolean(TarefasDbAdapter.CHAVE_ATUALIZA_INICIO);
 		}
-		mDbHelper.close();
+		mDbHelper.close();/*
 		if (auth_token == null || auth_token.trim().equals(""))
 			direcionaParaAutorizacao();
-		else
+		else*/
 			inicio();
 
 	}
 
-	private void direcionaParaAutorizacao() {
-
-		setContentView(R.layout.tela_redirecionamento);
-
-		bt_redirecionar = (Button) findViewById(R.id.bt_redirecionar);
-		
-		bt_redirecionar.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View view) {
-				/*Intent i = new Intent();
-				i.setAction(Intent.ACTION_VIEW);
-				i.addCategory(Intent.CATEGORY_BROWSABLE);
-				i.setData(Uri.parse(lembrar.getUrlToAuthentication()));
-				System.err.println(lembrar.getUrlToAuthentication());
-				startActivity(i);*/
-				Intent webSite = new Intent(AppLembrar.this, WebViewActivity.class);
-				webSite.setAction(Intent.ACTION_VIEW);
-				webSite.addCategory(Intent.CATEGORY_BROWSABLE);
-				webSite.putExtra(WebViewActivity.URL, lembrar.getUrlToAuthentication());
-				startActivityForResult(webSite, GET_AUTHENTICATION_OPERATION);
-				//preAbertura();
-
-			}
-		});
-
-	}
-
-	private void preAbertura() {
-
-		setContentView(R.layout.tela_pre_abertura);
-
-		bt_redirecionar = (Button) findViewById(R.id.bt_redirecionar);
-		bt_iniciar = (Button) findViewById(R.id.bt_iniciar);
-
-		bt_redirecionar.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View view) {
-				/*Intent i = new Intent();
-				i.setAction(Intent.ACTION_VIEW);
-				i.addCategory(Intent.CATEGORY_BROWSABLE);
-				i.setData(Uri.parse(lembrar.getUrlToAuthentication()));
-				System.err.println(lembrar.getUrlToAuthentication());
-				startActivity(i);*/
-				
-				Intent webSite = new Intent(AppLembrar.this, WebViewActivity.class);
-				webSite.setAction(Intent.ACTION_VIEW);
-				webSite.addCategory(Intent.CATEGORY_BROWSABLE);
-				webSite.putExtra(WebViewActivity.URL, lembrar.getUrlToAuthentication());
-				
-				startActivityForResult(webSite, GET_AUTHENTICATION_OPERATION);
-				//preAbertura();
-
-			}
-		});
-		bt_iniciar.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				auth_token = lembrar.getToken();
-				if (auth_token != null && !auth_token.trim().equals("")) {
-					if (!mDbHelper.isAberto())
-						mDbHelper.open();
-					mDbHelper.insertAuthToken(auth_token);
-					mDbHelper.close();
-					inicio();
-
-				} else{
-					
-					AlertDialog.Builder dlg = new AlertDialog.Builder(AppLembrar.this);
-					
-					dlg.setTitle(getResources().getText(R.string.msg_atencao));
-					dlg.setMessage(getResources().getText(R.string.msg_autorizacao));
-					dlg.setNeutralButton("Ok", null);
-					
-					dlg.show();
-					
-				}
-					
-
-			}
-		});
-	}
-
+	
+	
 	private void inicio() {
 		
 		
@@ -296,21 +214,21 @@ public class AppLembrar extends ListActivity {
 
 	private void BuscaTarefasNaInternet() {
 		if (temInternet) {
-			todasListas = lembrar.getListas(auth_token);
-			todasTarefas = lembrar.todasAsTarefas(auth_token, diferencaFuso);
+			todasListas = lembrar.testJgetListas(auth_token);
+			todasTarefas = lembrar.testJTodasAsTarefas(auth_token, diferencaFuso);
 			
 		}
 	}
 
-	private void insereNovasTarefasNoBanco() {
+	private void testTpJMinsereNovasTarefasNoBanco() {
 
 		if (todasTarefas != null) {
 			if (!mDbHelper.isAberto()) {
 				mDbHelper.open();
 			}
-			mDbHelper.deletaTodasTarefas();
-			mDbHelper.deletaTodasTags();
-			mDbHelper.deletaTodasNotas();
+			mDbHelper.testTpJMdeletaTodasTarefas();
+			mDbHelper.testTpJMdeletaTodasTags();
+			mDbHelper.testTpJMdeletaTodasNotas();
 			
 			for (Tarefa t : todasTarefas) {
 
@@ -343,7 +261,7 @@ public class AppLembrar extends ListActivity {
 		
 		
 		if (todasListas == null) {
-			Cursor tmpLista = mDbHelper.getTodasListas();
+			Cursor tmpLista = mDbHelper.getTodasListas("10000");
 			todasListas = TarefasDbAdapter
 					.deCursorParaArrayListListas(tmpLista);
 			tmpLista.close();
@@ -359,19 +277,20 @@ public class AppLembrar extends ListActivity {
 			Lista lst = new Lista(IdTarefasHoje, getResources().getString(R.string.str_hoje));
 			if (!todasListas.contains(lst))
 				todasListas.add(0, lst);
-			lst = new Lista(IdTarefasVencidas, getResources().getString(R.string.str_vencidas));
+			lst = new Lista(IdTarefasVencidas, getResources().getString(R.string.lst_vencidas));
 			if (!todasListas.contains(lst))
 				todasListas.add(1, lst);
 
 		
 			
-			mDbHelper.deletaTodasListas();
+			mDbHelper.testTpJMdeletaTodasListas();
 			for (Lista l : todasListas) {
 				if (l.getNome().equalsIgnoreCase("Inbox"))
 					l.setNome(getResources().getString(R.string.str_entrada));
 				else if (l.getNome().equalsIgnoreCase("Sent"))
 					l.setNome(getResources().getString(R.string.str_enviadas));
 				else if (l.getNome().equalsIgnoreCase("Todas as tarefas")) {
+					l.setNome(getResources().getString(R.string.lst_todas));
 					TodasTarefas_Id = l.getId();
 				}
 				mDbHelper.adicionaListas(l.getId(), l.getNome());
@@ -456,11 +375,7 @@ public class AppLembrar extends ListActivity {
 			mudaCapa(aparenciaEscolhida);
 			}
 			break;
-		case GET_AUTHENTICATION_OPERATION:
-			if(resultCode == AppLembrar.RESULT_OK){
-				preAbertura();
-			}
-			break;
+		
 		default:
 			extras.putInt("tipoOperacao", requestCode);
 			new RealizaOperacaoOnline().execute(extras, null, null);
@@ -488,7 +403,7 @@ public class AppLembrar extends ListActivity {
 			publishProgress(getResources().getString(R.string.msg_buscando));
 			BuscaTarefasNaInternet();
 			publishProgress(getResources().getString(R.string.msg_armazenando));
-			insereNovasTarefasNoBanco();
+			testTpJMinsereNovasTarefasNoBanco();
 
 			return null;
 		}
@@ -504,11 +419,12 @@ public class AppLembrar extends ListActivity {
 			buscaTodasAsListas(listaSelecionada);
 			progressDialog.dismiss();
 			mDbHelper.close();
+			
 
 		}
 
 	}
-
+	
 	public class AtualizarBack extends AsyncTask<Void, Void, Void> {
 		private ProgressDialog progressDialog;
 
@@ -523,7 +439,7 @@ public class AppLembrar extends ListActivity {
 		@Override
 		protected Void doInBackground(Void... arg0) {
 			BuscaTarefasNaInternet();
-			insereNovasTarefasNoBanco();
+			testTpJMinsereNovasTarefasNoBanco();
 
 			return null;
 		}
@@ -996,7 +912,7 @@ public class AppLembrar extends ListActivity {
 			mDbHelper.open();
 
 		if (lista.getId().equals(TodasTarefas_Id))
-			mTarefasCursor = mDbHelper.getTodasTarefas("");
+			mTarefasCursor = mDbHelper.testTpJMgetTodasTarefas("");
 		else if (lista.getId().equals(IdTarefasHoje)) {
 			final Calendar c = Calendar.getInstance();
 			mTarefasCursor = mDbHelper.getTarefasNoIntervalo(TrataData
@@ -1013,7 +929,7 @@ public class AppLembrar extends ListActivity {
 					TarefasDbAdapter.CHAVE_PRIO);
 
 		} else
-			mTarefasCursor = mDbHelper.getTarefasPorLista("", lista.getId()
+			mTarefasCursor = mDbHelper.testTpJMgetTarefasPorLista("", lista.getId()
 					.toString());
 
 		todasTarefas = TarefasDbAdapter
@@ -1172,7 +1088,7 @@ public class AppLembrar extends ListActivity {
 				publishProgress(getResources().getString(R.string.msg_buscando));
 				BuscaTarefasNaInternet();
 				publishProgress(getResources().getString(R.string.msg_armazenando));
-				insereNovasTarefasNoBanco();
+				testTpJMinsereNovasTarefasNoBanco();
 			}
 
 			return null;
@@ -1195,5 +1111,6 @@ public class AppLembrar extends ListActivity {
 		}
 
 	}
+	
 
 }

@@ -1,4 +1,4 @@
-package br.thg.lmb;
+package br.thg.rlmb;
 
 import java.util.ArrayList;
 import java.util.Calendar;

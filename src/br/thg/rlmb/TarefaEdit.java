@@ -1,9 +1,10 @@
-package br.thg.lmb;
+package br.thg.rlmb;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -25,7 +26,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import br.thg.lmb.AppLembrar.RealizaOperacaoOnline;
 import br.thg.lmb.dao.TarefasDbAdapter;
 import br.thg.lmb.dominio.Lista;
 import br.thg.lmb.dominio.Nota;
@@ -37,6 +37,7 @@ import br.thg.lmb.util.TokenizerEspaco;
 import br.thg.lmb.util.TrataData;
 import br.thg.lmb.util.WebViewActivity;
 import br.thg.rlmb.R;
+import br.thg.rlmb.AppLembrar.RealizaOperacaoOnline;
 
 public class TarefaEdit extends Activity {
 

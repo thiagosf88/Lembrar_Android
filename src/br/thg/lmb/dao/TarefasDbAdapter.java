@@ -125,8 +125,8 @@ public class TarefasDbAdapter {
 	private static final String DATABASE_CREATE_TB_NOTAS_TEMP = DATABASE_CREATE_TB_NOTAS
 			.replace(DATABASE_TB_NOTAS, DATABASE_TB_NOTAS_TEMP);
 
-	private static final String DATABASE_NAME = "lembrar";
-	private static final int DATABASE_VERSION = 15; // vers�o ser� a 15
+	private static final String DATABASE_NAME = "lembrar2";
+	private static final int DATABASE_VERSION = 1;
 
 	private final Context mCtx;
 
@@ -227,14 +227,22 @@ public class TarefasDbAdapter {
 
 	public void apagaTudo() {
 
-		deletaTodasTarefas();
+		testTpJMdeletaTodasTarefas();
 		deletaTodasTarefasTemporarias();
-		deletaTodasTags();
+		testTpJMdeletaTodasTags();
 		deletaTodasTagsTemporarias();
 		deletaTodasOperacoes();
-		deletaTodasListas();
-		deletaTodasNotas();
+		testTpJMdeletaTodasListas();
+		testTpJMdeletaTodasNotas();
 		deletaConfiguracoes();
+
+	}
+	public void apagaQuaseTudo() {
+
+		testTpJMdeletaTodasTarefas();
+
+		testTpJMdeletaTodasListas();
+
 
 	}
 
@@ -468,7 +476,7 @@ public class TarefasDbAdapter {
 				+ CHAVE_IDSERIES + "=" + idSeries, null) > 0;
 	}
 
-	public boolean deletaTodasTarefas() {
+	public boolean testTpJMdeletaTodasTarefas() {
 
 		int a = 0;
 		a = mDb.delete(DATABASE_TB_TAREFAS, null, null);
@@ -492,7 +500,7 @@ public class TarefasDbAdapter {
 		return a > 0;
 	}
 
-	public boolean deletaTodasTags() {
+	public boolean testTpJMdeletaTodasTags() {
 
 		int a = 0;
 		a = mDb.delete(DATABASE_TB_TAGS, null, null);
@@ -508,7 +516,7 @@ public class TarefasDbAdapter {
 		return a > 0;
 	}
 
-	public boolean deletaTodasNotas() {
+	public boolean testTpJMdeletaTodasNotas() {
 
 		int a = 0;
 		a = mDb.delete(DATABASE_TB_NOTAS, null, null);
@@ -516,7 +524,7 @@ public class TarefasDbAdapter {
 		return a > 0;
 	}
 
-	public boolean deletaTodasListas() {
+	public boolean testTpJMdeletaTodasListas() {
 
 		int a = 0;
 		a = mDb.delete(DATABASE_TB_LISTA, null, null);
@@ -537,7 +545,7 @@ public class TarefasDbAdapter {
 	 * 
 	 * @return Cursor over all notes
 	 */
-	public Cursor getTodasTarefas(String ordem) {
+	public Cursor testTpJMgetTodasTarefas(String ordem) {
 
 		return mDb.query(DATABASE_TB_TAREFAS, new String[] { CHAVE_ID,
 				CHAVE_IDSERIES, CHAVE_NAME, CHAVE_LISTA, CHAVE_PRIO,
@@ -546,7 +554,7 @@ public class TarefasDbAdapter {
 				+ CHAVE_DATAPREVISTA + "," + CHAVE_HORAPREVISTA);
 	}
 
-	public Cursor getTarefasPorLista(String ordem, String lista) {
+	public Cursor testTpJMgetTarefasPorLista(String ordem, String lista) {
 
 		return mDb.query(DATABASE_TB_TAREFAS, new String[] { CHAVE_ID,
 				CHAVE_IDSERIES, CHAVE_NAME, CHAVE_LISTA, CHAVE_PRIO,
@@ -882,10 +890,10 @@ public class TarefasDbAdapter {
 				null, null, null, null, null, null);
 	}
 
-	public Cursor getTodasListas() {
+	public Cursor getTodasListas(String limit) {
 		return mDb.query(false, DATABASE_TB_LISTA, new String[] {
 				CHAVE_NOME_LISTA, CHAVE_ID }, null, null, null, null, null,
-				null);
+				limit);
 	}
 
 	public Cursor getListasExceto(String listaFora) {
@@ -899,4 +907,20 @@ public class TarefasDbAdapter {
 				CHAVE_IDSERIES, CHAVE_TIPO, CHAVE_NOME_LISTA }, null, null,
 				null, null, null, null);
 	}
+	/**
+	 * Return a Cursor over the list of all notes in the database
+	 * 
+	 * @return Cursor over all notes
+	 */
+	public Cursor getTodasTarefas(String ordem, String limit) {
+
+		return mDb.query(DATABASE_TB_TAREFAS, new String[] { CHAVE_ID,
+				CHAVE_IDSERIES, CHAVE_NAME, CHAVE_LISTA, CHAVE_PRIO,
+				CHAVE_DATAPREVISTA, CHAVE_HORAPREVISTA, CHAVE_REPETICAO,
+				CHAVE_URL }, null, null, null, null, CHAVE_PRIO + ","
+				+ CHAVE_DATAPREVISTA + "," + CHAVE_HORAPREVISTA, limit);
+	}
+	
+
+	
 }

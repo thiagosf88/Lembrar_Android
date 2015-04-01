@@ -3,7 +3,7 @@
     <string name="app_name">Relembrar </string>
     <string name="semTarefas">Não há tarefas nessa lista</string>
     
-    <color name="fundo_branco">#fff</color>
+    <color name="branco">#0FF</color>
     <color name="preto">#000</color>
     <string name="menu_delete">Apagar Tarefa</string>
     <string name="menu_adiar">Adiar Tarefa</string>
@@ -87,7 +87,7 @@
     <string name="msg_autorizacao">Você ainda não autorizou essa app a acessar sua conta.</string>
     <string name="msg_sem_rede2" >Sem internet! Todas as alterações só terão efeito após uma conexão com a internet!</string>  
 	<string name="str_hoje">Hoje</string>
-	<string name="str_vencidas">Vencidas</string>
+	<string name="lst_vencidas">Vencidas</string>
 	<string name="str_entrada">Entrada</string>
 	<string name="str_enviadas">Enviadas</string>
 	<string name="msg_conectando">Conectando...</string>
@@ -127,6 +127,11 @@
 	<string name="op_escolher_aparencia">Escolha a capa</string>
 	<string name="op_sair_lembrar">Apagar todos os dados do Lembrar</string>
 	<string name="m_cnf">Config</string>
+	<string name="lst_todas">Todas</string>
+	<string name="tx_logar">Já tem uma conta?</string>
+	<string name="tx_criar_conta">É novo por aqui?</string>
+	<string name="btx_logar">Entrar</string>
+	<string name="btx_criar_conta">Criar conta</string>
 
 	
 </resources>

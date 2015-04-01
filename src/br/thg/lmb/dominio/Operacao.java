@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.database.Cursor;
-import br.thg.lmb.Lembrar;
 import br.thg.lmb.dao.TarefasDbAdapter;
 import br.thg.lmb.util.TrataData;
 import br.thg.lmb.util.TrataTag;
+import br.thg.rlmb.Lembrar;
 
-//Essa classe será utilizada para realizar atualizçao, deleçao entre outras acoes
+//Essa classe serï¿½ utilizada para realizar atualizï¿½ao, deleï¿½ao entre outras acoes
 public class Operacao {
 	
 	
